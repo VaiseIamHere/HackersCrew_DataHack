@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .chart {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .text-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="charts-grid">
+            <!-- Line Chart -->
+            <div class="chart">
+                <h2>Progress Over Time</h2>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <!-- Pie Chart 1 -->
+            <div class="chart">
+                <h2>Question Outcomes</h2>
+                <canvas id="pieChart1"></canvas>
+            </div>
+            <!-- Pie Chart 2 -->
+            <div class="chart">
+                <h2>Acceptance Rate</h2>
+                <canvas id="pieChart2"></canvas>
+            </div>
+            <!-- Bar Chart -->
+            <div class="chart">
+                <h2>Questions by Difficulty</h2>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+        <div class="text-section">
+            <h2>Coding Progress Summary</h2>
+            <h3>Progress Over Time</h3>
+            <p>This line chart shows your coding progress over time. The x-axis represents time (in days or weeks), while the y-axis shows your progress score. There's a general upward trend, indicating consistent improvement in your coding skills.</p>
+            
+            <h3>Question Outcomes</h3>
+            <p>The first pie chart breaks down your question attempts. 60% of questions were answered correctly, 30% incorrectly, and 10% were skipped. This suggests a good success rate, but there's room for improvement.</p>
+            
+            <h3>Acceptance Rate</h3>
+            <p>The second pie chart displays your code acceptance rate. 66% of your submitted code was accepted, while 34% was rejected. This is a solid performance, but aim to increase your acceptance rate by thoroughly testing your code before submission.</p>
+            
+            <h3>Questions by Difficulty</h3>
+            <p>The bar chart shows the number of questions attempted at each difficulty level (1-10). You've tackled a good mix of difficulties, with a peak at levels 5-7. Consider challenging yourself with more difficult questions to further improve your skills.</p>
+        </div>
+    </div>
+    <script>
+        // Line Chart
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+                datasets: [{
+                    label: 'Progress Score',
+                    data: [10, 15, 15, 20, 25, 30, 35, 40],
+                    borderColor: 'rgb(75, 92, 255)',
+                    tension: 0.1
+                }]
+            }
+        });
+        // Pie Chart 1
+        new Chart(document.getElementById('pieChart1'), {
+            type: 'pie',
+            data: {
+                labels: ['Correct', 'Incorrect', 'Skipped'],
+                datasets: [{
+                    data: [60, 30, 10],
+                    backgroundColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)', 'rgb(255, 205, 86)']
+                }]
+            }
+        });
+        // Pie Chart 2
+        new Chart(document.getElementById('pieChart2'), {
+            type: 'pie',
+            data: {
+                labels: ['Accepted', 'Rejected'],
+                datasets: [{
+                    data: [66, 34],
+                    backgroundColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)']
+                }]
+            }
+        });
+        // Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                datasets: [{
+                    label: 'Questions Attempted',
+                    data: [5, 8, 12, 15, 20, 22, 18, 10, 7, 3],
+                    backgroundColor: 'rgb(153, 102, 255)'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Questions'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Difficulty Level'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
